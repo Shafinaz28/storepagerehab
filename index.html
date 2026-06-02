@@ -102,23 +102,32 @@
             line-height: 1.3;
         }
 
+        .product-grid {
+            align-items: stretch;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
         .book-thumb {
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-shrink: 0;
+            width: 100%;
+            aspect-ratio: 1 / 1;
             overflow: hidden;
-            height: 320px;
             background: #fff;
         }
 
         .book-thumb img {
+            position: absolute;
+            inset: 0;
             display: block;
             width: 100%;
             height: 100%;
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             object-position: center;
         }
 
@@ -155,8 +164,11 @@
         }
 
         .book-meta {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
             text-align: center;
-            padding: 14px 12px 12px;
+            padding: 14px 12px 16px;
         }
 
         .book-author {
@@ -170,10 +182,11 @@
 
         .book-title {
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 26px;
+            font-size: clamp(1.1rem, 2.2vw, 1.45rem);
             font-weight: 700;
             color: #111827;
-            line-height: 1.2;
+            line-height: 1.25;
+            min-height: 2.5em;
             margin-bottom: 8px;
         }
 
@@ -181,6 +194,15 @@
             font-size: 18px;
             font-weight: 600;
             color: #667085;
+            margin-bottom: 12px;
+        }
+
+        .book-meta .stepper {
+            margin-top: auto;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 120px;
+            width: 100%;
         }
 
         .store-hero {
@@ -768,8 +790,8 @@
                         </div>
                         <p class="text-sm font-medium text-slate-500">Sort: Popular</p>
                     </div>
-                    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                        <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                    <div class="product-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                        <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white">
                             <div class="relative book-thumb"><span
                                     class="absolute left-3 top-3 rounded-full bg-slate-900 px-2 py-1 text-[10px] font-bold text-white">NEW</span><img
                                     src="image/acl.png" alt="ACL book" />
@@ -788,7 +810,7 @@
                                         type="button" data-plus>+</button></div>
                             </div>
                         </article>
-                        <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                        <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white">
                             <div class="relative book-thumb"><span
                                     class="absolute left-3 top-3 rounded-full bg-orange-500 px-2 py-1 text-[10px] font-bold text-white">HOT</span><img
                                     src="image/Cadence .png" alt="Cadence book" />
@@ -807,7 +829,7 @@
                                         type="button" data-plus>+</button></div>
                             </div>
                         </article>
-                        <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                        <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white">
                             <div class="relative book-thumb"><span
                                     class="absolute left-3 top-3 rounded-full bg-slate-900 px-2 py-1 text-[10px] font-bold text-white">SAVE</span><img
                                     src="image/run.png" alt="Run book" />
@@ -826,7 +848,7 @@
                                         type="button" data-plus>+</button></div>
                             </div>
                         </article>
-                        <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                        <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white">
                             <div class="relative book-thumb"><span
                                     class="absolute left-3 top-3 rounded-full bg-slate-900 px-2 py-1 text-[10px] font-bold text-white">TOP</span><img
                                     src="image/Women's Health.png" alt="Women's Health book"
