@@ -261,7 +261,7 @@
 
         @media (min-width: 768px) {
             .store-hero-inner {
-                grid-template-columns: 1.2fr 0.8fr;
+                grid-template-columns: 1fr 1fr;
                 gap: 2rem;
                 padding: 2.5rem 2.5rem;
             }
@@ -269,6 +269,8 @@
 
         @media (min-width: 1024px) {
             .store-hero-inner {
+                grid-template-columns: 1.05fr 0.95fr;
+                gap: 2.5rem;
                 padding: 2.75rem 3rem;
             }
         }
@@ -282,7 +284,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 200px;
+            min-height: 280px;
+        }
+
+        @media (min-width: 768px) {
+            .store-hero-visual {
+                min-height: 320px;
+            }
         }
 
         .store-hero-kicker {
@@ -337,39 +345,47 @@
 
         .hero-book-stack {
             position: relative;
-            width: min(100%, 320px);
-            height: 250px;
+            width: min(100%, 440px);
+            height: 320px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-book-stack {
+                width: min(100%, 480px);
+                height: 340px;
+            }
         }
 
         .hero-book-stack img {
             position: absolute;
-            width: 150px;
+            width: 190px;
             height: auto;
-            border-radius: 3px;
-            box-shadow: 0 20px 44px rgba(15, 23, 42, 0.18);
+            border-radius: 4px;
+            box-shadow: 0 24px 52px rgba(15, 23, 42, 0.2);
             object-fit: contain;
         }
 
         .hero-book-stack .book-a {
-            left: 2%;
-            bottom: 8px;
+            left: 0;
+            bottom: 12px;
             transform: rotate(-10deg);
             z-index: 1;
         }
 
         .hero-book-stack .book-b {
             left: 50%;
-            bottom: 16px;
+            bottom: 24px;
             transform: translateX(-50%) rotate(3deg);
             z-index: 3;
-            width: 162px;
+            width: 210px;
         }
 
         .hero-book-stack .book-c {
             right: 0;
-            bottom: 4px;
+            bottom: 8px;
             transform: rotate(11deg);
             z-index: 2;
+            width: 200px;
         }
 
         .main-nav {
@@ -869,8 +885,8 @@
                     <p class="mb-4 text-[2rem] font-medium text-slate-900">Filter by</p>
                     <div class="mb-2 flex items-center justify-between text-lg text-slate-900">
                         <span>Price</span><span>−</span></div>
-                    <input type="range" id="price-range" min="199" max="1199" value="1199" class="w-full accent-slate-700" aria-label="Maximum price filter" />
-                    <div class="mt-2 flex justify-between text-lg text-slate-900"><span>₹199</span><span id="price-max-label">₹1199</span>
+                    <input type="range" id="price-range" min="199" max="799" value="799" class="w-full accent-slate-700" aria-label="Maximum price filter" />
+                    <div class="mt-2 flex justify-between text-lg text-slate-900"><span>₹199</span><span id="price-max-label">₹799</span>
                     </div>
                 </div>
             </aside>
@@ -942,7 +958,7 @@
                                 </div>
                             </div>
                         </article>
-                        <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white" data-price="499">
+                        <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white" data-price="799">
                             <div class="relative book-thumb"><span
                                     class="absolute left-3 top-3 rounded-full bg-slate-900 px-2 py-1 text-[10px] font-bold text-white">SAVE</span><img
                                     src="image/run.png" alt="Run book" />
@@ -951,14 +967,14 @@
                             <div class="book-meta">
                                 <p class="book-author">PREHAB</p>
                                 <h4 class="book-title">RUN by PREHAB</h4>
-                                <p class="book-price">Rs. 499.00</p>
+                                <p class="book-price">Rs. 799.00</p>
                                 <div class="book-actions">
                                     <a href="runbook.html" class="book-btn book-btn-view">View More</a>
                                     <a href="https://www.amazon.in/dp/B0H2RJ43W7" class="book-btn book-btn-buy" target="_blank" rel="noopener noreferrer">Buy</a>
                                 </div>
                             </div>
                         </article>
-                        <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white" data-price="1199">
+                        <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white" data-price="199">
                             <div class="relative book-thumb"><span
                                     class="absolute left-3 top-3 rounded-full bg-slate-900 px-2 py-1 text-[10px] font-bold text-white">TOP</span><img
                                     src="image/Women's Health.png" alt="Women's Health book"
@@ -968,7 +984,7 @@
                             <div class="book-meta">
                                 <p class="book-author">PREHAB</p>
                                 <h4 class="book-title">Women's Health by PREHAB</h4>
-                                <p class="book-price">Rs. 1,199.00</p>
+                                <p class="book-price">Rs. 199.00</p>
                                 <div class="book-actions">
                                     <a href="https://www.prehabclinics.com/product-page/women-s-health-by-prehab" class="book-btn book-btn-view">View More</a>
                                     <a href="https://www.prehabclinics.com/product-page/women-s-health-by-prehab" class="book-btn book-btn-buy">Buy</a>
