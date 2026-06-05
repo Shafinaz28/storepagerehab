@@ -24,6 +24,13 @@
         };
     </script>
     <style>
+        :root {
+            --book-cover-width: 72px;
+            --book-cover-height: 108px;
+            --hero-book-width: 160px;
+            --hero-book-height: 240px;
+        }
+
         body {
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
         }
@@ -104,19 +111,127 @@
 
         .product-grid {
             align-items: stretch;
+            justify-items: stretch;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 1rem;
+            }
         }
 
         .product-card {
             display: flex;
             flex-direction: column;
             height: 100%;
+            width: 100%;
+            min-width: 0;
+        }
+
+        @media (max-width: 639px) {
+            .book-meta {
+                padding: 14px 14px 16px;
+            }
+
+            .book-author {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .book-title {
+                font-size: 1.15rem;
+                margin-bottom: 6px;
+            }
+
+            .book-price {
+                font-size: 17px;
+                margin-bottom: 10px;
+            }
+
+            .book-actions {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .book-btn {
+                flex: 1;
+                min-height: 42px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .book-meta {
+                padding: 12px 12px 14px;
+            }
+
+            .book-author {
+                font-size: 11px;
+                margin-bottom: 6px;
+            }
+
+            .book-title {
+                font-size: 1.05rem;
+                margin-bottom: 6px;
+            }
+
+            .book-price {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            .book-actions {
+                flex-direction: row;
+                gap: 8px;
+            }
+
+            .book-btn {
+                flex: 1;
+                min-height: 38px;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .book-meta {
+                padding: 14px 14px 16px;
+            }
+
+            .book-author {
+                font-size: 12px;
+            }
+
+            .book-title {
+                font-size: 1.2rem;
+            }
+
+            .book-price {
+                font-size: 18px;
+            }
+
+            .book-btn {
+                min-height: 42px;
+                font-size: 0.85rem;
+            }
         }
 
         .book-thumb {
             position: relative;
             flex-shrink: 0;
             width: 100%;
-            aspect-ratio: 1 / 1;
+            height: 0;
+            padding-bottom: 150%;
             overflow: hidden;
             background: #fff;
         }
@@ -127,8 +242,9 @@
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
+            filter: none;
         }
 
         .book-icons {
@@ -168,51 +284,53 @@
             flex: 1;
             flex-direction: column;
             text-align: center;
-            padding: 14px 12px 16px;
+            padding: 12px 10px 14px;
         }
 
         .book-author {
-            font-size: 13px;
-            letter-spacing: 0.12em;
+            font-size: 11px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             color: #6b7280;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .book-title {
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+            font-size: 1rem;
             font-weight: 700;
             color: #111827;
             line-height: 1.25;
-            min-height: 2.5em;
-            margin-bottom: 8px;
+            min-height: 2.4em;
+            margin-bottom: 6px;
         }
 
         .book-price {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
             color: #667085;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .book-actions {
             display: flex;
-            gap: 8px;
+            flex-direction: column;
+            gap: 3px;
             margin-top: auto;
             width: 100%;
         }
 
         .book-btn {
-            flex: 1;
+            flex: none;
+            width: 100%;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             min-height: 38px;
             padding: 0 10px;
             border-radius: 999px;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 700;
             text-decoration: none;
             transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
@@ -345,47 +463,44 @@
 
         .hero-book-stack {
             position: relative;
-            width: min(100%, 440px);
-            height: 320px;
-        }
-
-        @media (min-width: 768px) {
-            .hero-book-stack {
-                width: min(100%, 480px);
-                height: 340px;
-            }
+            width: min(100%, 400px);
+            height: calc(var(--hero-book-height) + 24px);
         }
 
         .hero-book-stack img {
             position: absolute;
-            width: 190px;
-            height: auto;
+            width: var(--hero-book-width);
+            height: var(--hero-book-height);
             border-radius: 4px;
-            box-shadow: 0 24px 52px rgba(15, 23, 42, 0.2);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.16);
             object-fit: contain;
+            object-position: center bottom;
+            background: transparent;
+            filter: none;
+            image-rendering: auto;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         .hero-book-stack .book-a {
             left: 0;
-            bottom: 12px;
-            transform: rotate(-10deg);
+            bottom: 10px;
+            transform: rotate(-8deg) translateZ(0);
             z-index: 1;
         }
 
         .hero-book-stack .book-b {
             left: 50%;
-            bottom: 24px;
-            transform: translateX(-50%) rotate(3deg);
+            bottom: 22px;
+            transform: translateX(-50%) rotate(2deg) translateZ(0);
             z-index: 3;
-            width: 210px;
         }
 
         .hero-book-stack .book-c {
             right: 0;
-            bottom: 8px;
-            transform: rotate(11deg);
+            bottom: 6px;
+            transform: rotate(8deg) translateZ(0);
             z-index: 2;
-            width: 200px;
         }
 
         .main-nav {
@@ -861,9 +976,9 @@
                     </div>
                     <div class="store-hero-visual">
                         <div class="hero-book-stack">
-                            <img src="image/acl.png" alt="ACL by PREHAB" class="book-a" />
-                            <img src="image/Cadence .png" alt="Cadence by PREHAB" class="book-b" />
-                            <img src="image/run.png" alt="RUN by PREHAB" class="book-c" />
+                            <img src="image/acl.png" alt="ACL" class="book-a" />
+                            <img src="image/bookcover.png" alt="Cadence" class="book-b" />
+                            <img src="image/frontcover.png" alt="RUN" class="book-c" />
                         </div>
                     </div>
                 </div>
@@ -925,16 +1040,14 @@
                         </div>
                         <p class="text-sm font-medium text-slate-500">Sort: Popular</p>
                     </div>
-                    <div class="product-grid grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    <div class="product-grid grid">
                         <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white" data-price="199">
-                            <div class="relative book-thumb"><span
-                                    class="absolute left-3 top-3 rounded-full bg-slate-900 px-2 py-1 text-[10px] font-bold text-white">NEW</span><img
-                                    src="image/acl.png" alt="ACL book" />
-                                
+                            <div class="relative book-thumb">
+                                <img src="image/acl.png" alt="ACL book" />
                             </div>
                             <div class="book-meta">
                                 <p class="book-author">PREHAB</p>
-                                <h4 class="book-title">ACL by PREHAB</h4>
+                                <h4 class="book-title">ACL</h4>
                                 <p class="book-price">Rs. 199.00</p>
                                 <div class="book-actions">
                                     <a href="https://www.prehabclinics.com/product-page/acl-by-prehab" class="book-btn book-btn-view">View More</a>
@@ -943,14 +1056,12 @@
                             </div>
                         </article>
                         <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white" data-price="650">
-                            <div class="relative book-thumb"><span
-                                    class="absolute left-3 top-3 rounded-full bg-orange-500 px-2 py-1 text-[10px] font-bold text-white">HOT</span><img
-                                    src="image/Cadence .png" alt="Cadence book" />
-                                
+                            <div class="relative book-thumb">
+                                <img src="image/bookcover.png" alt="Cadence book" />
                             </div>
                             <div class="book-meta">
                                 <p class="book-author">PREHAB</p>
-                                <h4 class="book-title">Cadence by PREHAB</h4>
+                                <h4 class="book-title">Cadence</h4>
                                 <p class="book-price">Rs. 650.00</p>
                                 <div class="book-actions">
                                     <a href="Cadence.html" class="book-btn book-btn-view">View More</a>
@@ -959,14 +1070,12 @@
                             </div>
                         </article>
                         <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white" data-price="799">
-                            <div class="relative book-thumb"><span
-                                    class="absolute left-3 top-3 rounded-full bg-slate-900 px-2 py-1 text-[10px] font-bold text-white">SAVE</span><img
-                                    src="image/run.png" alt="Run book" />
-                               
+                            <div class="relative book-thumb">
+                                <img src="image/frontcover.png" alt="Run book" />
                             </div>
                             <div class="book-meta">
                                 <p class="book-author">PREHAB</p>
-                                <h4 class="book-title">RUN by PREHAB</h4>
+                                <h4 class="book-title">RUN</h4>
                                 <p class="book-price">Rs. 799.00</p>
                                 <div class="book-actions">
                                     <a href="runbook.html" class="book-btn book-btn-view">View More</a>
@@ -975,15 +1084,12 @@
                             </div>
                         </article>
                         <article class="product-card overflow-hidden rounded-xl border border-slate-200 bg-white" data-price="199">
-                            <div class="relative book-thumb"><span
-                                    class="absolute left-3 top-3 rounded-full bg-slate-900 px-2 py-1 text-[10px] font-bold text-white">TOP</span><img
-                                    src="image/Women's Health.png" alt="Women's Health book"
-                                    />
-                                
+                            <div class="relative book-thumb">
+                                <img src="image/womenshealth.png" alt="Women's Health book" />
                             </div>
                             <div class="book-meta">
                                 <p class="book-author">PREHAB</p>
-                                <h4 class="book-title">Women's Health by PREHAB</h4>
+                                <h4 class="book-title">Women's Health</h4>
                                 <p class="book-price">Rs. 199.00</p>
                                 <div class="book-actions">
                                     <a href="https://www.prehabclinics.com/product-page/women-s-health-by-prehab" class="book-btn book-btn-view">View More</a>
